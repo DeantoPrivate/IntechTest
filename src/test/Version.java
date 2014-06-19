@@ -3,6 +3,9 @@ package test;
 /**
  * Created by Denis on 19.06.2014.
  */
+import core.HibernateUtil;
+import org.hibernate.SessionFactory;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -53,6 +56,14 @@ public class Version {
                 Logger lgr = Logger.getLogger(Version.class.getName());
                 lgr.log(Level.WARNING, ex.getMessage(), ex);
             }
+        }
+
+
+        try{
+            SessionFactory sf = HibernateUtil.getSessionFactory();
+
+        } catch (Exception e){
+            System.out.println("HibernateUtil getSessionFactory failed!");
         }
     }
 }
