@@ -9,6 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="tasks")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Task {
 
     @Id
