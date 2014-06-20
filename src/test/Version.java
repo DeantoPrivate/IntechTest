@@ -9,11 +9,13 @@ import core.HistoryTask;
 import core.Task;
 import org.hibernate.SessionFactory;
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -61,7 +63,6 @@ public class Version {
             }
         }
 
-
         try{
             SessionFactory sf = HibernateUtil.getSessionFactory();
 
@@ -69,13 +70,17 @@ public class Version {
             System.out.println("HibernateUtil getSessionFactory failed!");
         }
 
-        Task task = new Task(1,2,3,4);
-        BaseConection.addTask(task);
+        for (int i=0;i<10;i++) {
+            Task task = new Task(1, i + 2, i - 3, 4);
+            BaseConection.addTask(task);
 
-        HistoryTask historyTask = new HistoryTask(task,5);
-        BaseConection.addHistory(historyTask);
+            HistoryTask historyTask = new HistoryTask(new Task(10,20,30,40), 100);
+            BaseConection.addHistory(historyTask);
+        }
 
+        java.util.Collection tasks = BaseConection.getAllTasks();
 
+        int t=0;
 
     }
 }
