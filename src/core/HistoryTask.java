@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by Denis on 19.06.2014.
  */
 @Entity
-@Table(name="history")
+@Table(name="historyTask")
 @AttributeOverrides({
         @AttributeOverride(name="a", column=@Column(name="task_a")),
         @AttributeOverride(name="b", column=@Column(name="task_b")),

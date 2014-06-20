@@ -25,6 +25,9 @@
         <!-- Disable the second-level cache -->
         <property name="cache.provider_class">org.hibernate.cache.HashtableCacheProvider</property>
 
+        <!-- Drop and re-create the database schema on startup -->
+        <property name="hibernate.hbm2ddl.auto">create</property>
+
         <!-- Mapping files -->
         <mapping class="core.HistoryTask"/>
         <mapping class="core.Task"/>

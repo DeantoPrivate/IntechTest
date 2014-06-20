@@ -3,7 +3,10 @@ package test;
 /**
  * Created by Denis on 19.06.2014.
  */
+import core.BaseConection;
 import core.HibernateUtil;
+import core.HistoryTask;
+import core.Task;
 import org.hibernate.SessionFactory;
 
 import java.sql.Connection;
@@ -65,5 +68,14 @@ public class Version {
         } catch (Exception e){
             System.out.println("HibernateUtil getSessionFactory failed!");
         }
+
+        Task task = new Task(1,2,3,4);
+        BaseConection.addTask(task);
+
+        HistoryTask historyTask = new HistoryTask(task,5);
+        BaseConection.addHistory(historyTask);
+
+
+
     }
 }

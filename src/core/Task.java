@@ -13,7 +13,8 @@ import javax.persistence.*;
 public class Task {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.TABLE)
+    @SequenceGenerator(name = "MySequence", sequenceName = "task_id", allocationSize=1)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "MySequence")
     @Column(name="task_id")
     private int id;
 
@@ -33,6 +34,7 @@ public class Task {
         b = 0;
         c = 0;
         action = 0;
+        _added = new Date(0);
     }
 
     public Task(int a,int b,int c,int action){
@@ -40,6 +42,7 @@ public class Task {
         this.b = b;
         this.c = c;
         this.action = action;
+        _added = new Date(1);
     }
 
     public void setA(int a){
