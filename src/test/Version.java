@@ -3,10 +3,7 @@ package test;
 /**
  * Created by Denis on 19.06.2014.
  */
-import core.BaseConection;
-import core.HibernateUtil;
-import core.HistoryTask;
-import core.Task;
+import core.*;
 import org.hibernate.SessionFactory;
 
 
@@ -70,15 +67,21 @@ public class Version {
             System.out.println("HibernateUtil getSessionFactory failed!");
         }
 
-        for (int i=0;i<10;i++) {
-            Task task = new Task(1, i + 2, i - 3, 4);
-            BaseConection.addTask(task);
 
-            HistoryTask historyTask = new HistoryTask(new Task(10,20,30,40), 100);
-            BaseConection.addHistory(historyTask);
+        for (int i=0;i<3;i++) {
+            Task task = new Task(1, i + 2, i - 3, 4);
+            BDCore.add(task);
+
+            HistoryTask historyTask = new HistoryTask(new Task(10,i*10,i*10,40), 100);
+            BDCore.add(historyTask);
         }
 
-        java.util.Collection tasks = BaseConection.getAllTasks();
+        int o=0;
+
+        for (int i=0;i<7;i++){
+            Task t = BDCore.getNextTask();
+            int r=0;
+        }
 
         int t=0;
 

@@ -14,7 +14,13 @@ import javax.persistence.*;
         @AttributeOverride(name="action", column=@Column(name="task_action")),
         @AttributeOverride(name="_added", column=@Column(name="task_added"))
 })
-public class HistoryTask extends Task{
+public class HistoryTask extends ATask{
+
+    @Id
+    @SequenceGenerator(name = "MySequence2", sequenceName = "history_task_id", allocationSize=1)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "MySequence2")
+    @Column(name="task_id")
+    private int id;
 
     @Column(name="history_res")
     private int res;
@@ -25,11 +31,11 @@ public class HistoryTask extends Task{
     }
 
     public HistoryTask(Task task,int res){
-        setA(task.getA());
-        setB(task.getB());
-        setC(task.getC());
-        setAction(task.getAction());
-
+        this.a = task.getA();
+        this.b = task.getB();
+        this.c = task.getC();
+        this.action = task.getAction();
+        this.added = task.getAdded();
         this.res = res;
     }
 
